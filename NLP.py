@@ -28,8 +28,11 @@ import official.nlp.modeling.losses
 import official.nlp.modeling.models
 import official.nlp.modeling.networks
 
+# Synonym Generation
 from nltk.corpus import wordnet
 
+# Regex
+import re
 def getSynonyms(word):
             # Create List to hold the synonyms;
             synonyms = []
@@ -50,6 +53,8 @@ def getSynonyms(word):
             return synonyms
 
 def processQuery(string):
+    if(re.sub(r'[^\w\s]', '', string.lower()) == "what are your capabilities"):
+                return "I can provide information on court cases based on specific cases as well as find laws and determine if something is legal or not [experimental]"
     # BERT setup folder
     gs_folder_bert = "gs://cloud-tpu-checkpoints/bert/keras_bert/uncased_L-12_H-768_A-12"
     tf.io.gfile.listdir(gs_folder_bert)
@@ -77,4 +82,4 @@ def processQuery(string):
     return tags + end
 
 # Example Run
-# print(processQuery("Is arson and theft a felony in Pennsylvania?"))
+print(processQuery("What are your capabilities?"))
