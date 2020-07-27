@@ -1,8 +1,4 @@
-118] None of the MLIR optimization passes are enabled (registered 1)
 Vocab size: 30522
 ['is', 'arson', 'and', 'theft', 'a', 'felony', 'in', 'pennsylvania', '?']
 ['arson', 'theft', 'felony', 'pennsylvania']
-['arson', 'incendiarism', 'fire-raising']
-['larceny', 'theft', 'thievery', 'thieving', 'stealing']
-['felony']
-['Pennsylvania', 'Keystone State', 'PA', 'Pennsylvania', 'University of Pennsylvania', 'Pennsylvania', 'Penn']
+['arson', 'theft', 'felony', 'pennsylvania', ['arson', 'incendiarism', 'fire-raising'], ['larceny', 'theft', 'thievery', 'thieving', 'stealing'], ['felony'], ['Pennsylvania', 'Keystone State', 'PA', 'Pennsylvania', 'University of Pennsylvania', 'Pennsylvania', 'Penn']]

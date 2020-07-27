@@ -31,44 +31,50 @@ import official.nlp.modeling.networks
 from nltk.corpus import wordnet
 
 def getSynonyms(word):
+            # Create List to hold the synonyms;
             synonyms = []
+            # The term synset stands for "set of synonyms". 
+            # A set of synonyms is a set of words with similar
+            # meaning, e.g. ship, skiff, canoe, kayak might 
+            # all be synonyms for boat. In the nltk, a synset
+            # is in fact a set of lemmas with related meaning. 
             for syn in wordnet.synsets(word):
+                        # A lemma is wordnet's version of an entry in a dictionary:
+                        # A word in canonical form, with a single meaning. E.g., if
+                        # you wanted to look up "banks" in the dictionary, the canonical 
+                        # form would be "bank" and there would be separate lemmas for 
+                        # the nouns meaning "financial institution" and "side of the river",
+                        # a separate one for the verb "to bank (on)", etc.
                         for l in syn.lemmas():
                                     synonyms.append(l.name().replace("_"," "))
-
             return synonyms
 
-# dictionary = PyDictionary()
+def processQuery(string):
+    # BERT setup folder
+    gs_folder_bert = "gs://cloud-tpu-checkpoints/bert/keras_bert/uncased_L-12_H-768_A-12"
+    tf.io.gfile.listdir(gs_folder_bert)
+    hub_url_bert = "https://tfhub.dev/tensorflow/bert_en_uncased_L-12_H-768_A-12/2"
+    glue, info = tfds.load('glue/mrpc', with_info=True,
+                        # It's small, load the whole dataset
+                        batch_size=-1)
+    # Set up tokenizer to generate Tensorflow dataset
+    tokenizer = bert.tokenization.FullTokenizer(
+        vocab_file=os.path.join(gs_folder_bert, "vocab.txt"),
+        do_lower_case=True)
+    tokens = tokenizer.tokenize(string)
+    ids = tokenizer.convert_tokens_to_ids(tokens)
+    cnt = 0;
+    tags = []
+    for ele in ids:
+            if ele > 3000:
+                        # Append token to tag if token value above 3000 (uncommon words)
+                        tags.append(tokens[cnt])
+            cnt += 1
+    end = []
+    for tag in tags:
+                # Get all synonyms
+                end.append(getSynonyms(tag))
+    return tags + end
 
-gs_folder_bert = "gs://cloud-tpu-checkpoints/bert/keras_bert/uncased_L-12_H-768_A-12"
-tf.io.gfile.listdir(gs_folder_bert)
-hub_url_bert = "https://tfhub.dev/tensorflow/bert_en_uncased_L-12_H-768_A-12/2"
-
-glue, info = tfds.load('glue/mrpc', with_info=True,
-                       # It's small, load the whole dataset
-                       batch_size=-1)
-
-
-# Set up tokenizer to generate Tensorflow dataset
-tokenizer = bert.tokenization.FullTokenizer(
-    vocab_file=os.path.join(gs_folder_bert, "vocab.txt"),
-     do_lower_case=True)
-
-print("Vocab size:", len(tokenizer.vocab))
-
-tokens = tokenizer.tokenize("Is arson and theft a felony in Pennsylvania?")
-print(tokens)
-ids = tokenizer.convert_tokens_to_ids(tokens)
-cnt = 0;
-tags = []
-for ele in ids:
-          if ele > 3000:
-                    # print(ele)
-                    tags.append(tokens[cnt])
-          cnt += 1
-print(tags)
-for tag in tags:
-            print(getSynonyms(tag))
-
-
-# print(ids)
+# Example Run
+# print(processQuery("Is arson and theft a felony in Pennsylvania?"))
