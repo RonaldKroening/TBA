@@ -1,0 +1,15 @@
+2020-07-27 15:00:22.697154: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcudart.so.10.1
+/home/bhargav/anaconda3/envs/tf/lib/python3.8/site-packages/tensorflow_addons/utils/ensure_tf_install.py:38: UserWarning: You are currently using a nightly version of TensorFlow (2.4.0-dev20200727). 
+TensorFlow Addons offers no support for the nightly versions of TensorFlow. Some things might work, some other might not. 
+If you encounter a bug, do not file an issue on GitHub.
+  warnings.warn(
+2020-07-27 15:00:26.174617: I tensorflow/stream_executor/platform/default/dso_loader.cc:48] Successfully opened dynamic library libcuda.so.1
+2020-07-27 15:00:26.208576: E tensorflow/stream_executor/cuda/cuda_driver.cc:314] failed call to cuInit: CUDA_ERROR_NO_DEVICE: no CUDA-capable device is detected
+2020-07-27 15:00:26.208636: I tensorflow/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (bhargav-iMac): /proc/driver/nvidia/version does not exist
+2020-07-27 15:00:26.218839: I tensorflow/core/platform/profile_utils/cpu_utils.cc:104] CPU Frequency: 2699955000 Hz
+2020-07-27 15:00:26.219086: I tensorflow/compiler/xla/service/service.cc:168] XLA service 0x564bc482ca70 initialized for platform Host (this does not guarantee that XLA will be used). Devices:
+2020-07-27 15:00:26.219110: I tensorflow/compiler/xla/service/service.cc:176]   StreamExecutor device (0): Host, Default Version
+2020-07-27 15:00:26.279391: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:118] None of the MLIR optimization passes are enabled (registered 1)
+Vocab size: 30522
+['is', 'arson', 'and', 'theft', 'a', 'felony', 'in', 'pennsylvania', '?']
+['arson', 'theft', 'felony', 'pennsylvania']

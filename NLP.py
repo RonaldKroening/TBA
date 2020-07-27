@@ -42,9 +42,11 @@ tokens = tokenizer.tokenize("Is arson and theft a felony in Pennsylvania?")
 print(tokens)
 ids = tokenizer.convert_tokens_to_ids(tokens)
 cnt = 0;
+tags = []
 for ele in ids:
           if ele > 3000:
-                    print(ele)
-                    print(tokens[cnt])
+                    # print(ele)
+                    tags.append(tokens[cnt])
           cnt += 1
+print(tags)
 # print(ids)
