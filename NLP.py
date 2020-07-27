@@ -82,4 +82,4 @@ def processQuery(string):
     return tags + end
 
 # Example Run
-print(processQuery("What are your capabilities?"))
+# print(processQuery("What are your capabilities?"))
