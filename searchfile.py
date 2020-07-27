@@ -28,14 +28,16 @@ def search_Tags(t):
             if (u in ta[v]):
                 caseN.append(na[v])
     return caseN
-allCases = []
-#for searching by queries, use search_Tags func with any tags. 
-s = search_Tags("robbery")
-for g in glob.glob("Cases/*.pdf"):
-    h1 = g.replace("Cases/", "")
-    h1 = g.replace(".pdf", "")
 
-    if (h1 in s):
-        allCases.append(g)
-#all cases with tags are in array, can use to send files
-print(allCases)
+if __name__ == '__main__':
+    allCases = []
+    #for searching by queries, use search_Tags func with any tags.
+    s = search_Tags("robbery")
+    for g in glob.glob("Cases/*.pdf"):
+        h1 = g.replace("Cases/", "")
+        h1 = g.replace(".pdf", "")
+
+        if (h1 in s):
+            allCases.append(g)
+    #all cases with tags are in array, can use to send files
+    print(allCases)
