@@ -1,3 +1,9 @@
+# If you don't have nltk installed comment all the code under the bar and run the following:
+
+# import nltk
+# nltk.download()
+
+# -------------------------------------------------------------------
 import os
 
 import numpy as np
@@ -10,7 +16,7 @@ tfds.disable_progress_bar()
 from official.modeling import tf_utils
 from official import nlp
 from official.nlp import bert
-
+# from PyDictionary import PyDictionary
 # Load the required submodules
 import official.nlp.optimization
 import official.nlp.bert.bert_models
@@ -21,6 +27,18 @@ import official.nlp.data.classifier_data_lib
 import official.nlp.modeling.losses
 import official.nlp.modeling.models
 import official.nlp.modeling.networks
+
+from nltk.corpus import wordnet
+
+def getSynonyms(word):
+            synonyms = []
+            for syn in wordnet.synsets(word):
+                        for l in syn.lemmas():
+                                    synonyms.append(l.name().replace("_"," "))
+
+            return synonyms
+
+# dictionary = PyDictionary()
 
 gs_folder_bert = "gs://cloud-tpu-checkpoints/bert/keras_bert/uncased_L-12_H-768_A-12"
 tf.io.gfile.listdir(gs_folder_bert)
@@ -49,4 +67,8 @@ for ele in ids:
                     tags.append(tokens[cnt])
           cnt += 1
 print(tags)
+for tag in tags:
+            print(getSynonyms(tag))
+
+
 # print(ids)
