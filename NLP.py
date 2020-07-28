@@ -76,6 +76,7 @@ def processQuery(string):
                         tags.append(tokens[cnt])
             cnt += 1
     end = []
+    print(tags)
     for tag in tags:
                 # Get all synonyms
                 end.append(getSynonyms(tag))
