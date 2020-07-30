@@ -1,0 +1,8 @@
+# Alan SDK Code
+title("Hello from Project six fourteen");
+
+
+intent('$(QUERY* (.*))',
+      p => {p.play(p.QUERY.value);
+    
+})
