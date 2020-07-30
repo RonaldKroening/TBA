@@ -17,6 +17,7 @@ Flask-RESTful==0.3.8
 flatbuffers==1.12
 future==0.18.2
 gast==0.3.3
+gunicorn==20.0.4
 gin-config==0.3.0
 google-api-core==1.22.0
 google-api-python-client==1.10.0
